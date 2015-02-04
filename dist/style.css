@@ -827,7 +827,7 @@ abbr[title]:hover {
     font-size: medium;
     text-align: left;
     display: inline-block;
-    width: 100%;
+    width: 33%;
     vertical-align: top; }
   .grid:after {
     display: inline-block;
@@ -852,4 +852,10 @@ img {
 body {
   -webkit-transition: opacity .25s ease;
           transition: opacity .25s ease; }
+
+span {
+  display: inline-block; }
+
+.etsy-grid > * {
+  border: dotted black; }
 

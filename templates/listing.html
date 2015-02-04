@@ -1,11 +1,16 @@
 
     <ul>
+
+         <% if(Images instanceof Array && Images.length){ %>
+            <img src="<%= Images[0].url_170x135 %>">
+        <% } %>
         <%=listing_id%>
         <%=user_id%>
         <%=category_id%>
         <%= title%>
         <%=price%>
         <%=currency_code%>
+
 
 
 

@@ -27,15 +27,21 @@
         EtsyListing.prototype = {
                 URLs: {
                     listings: function() {
-                        return "https://openapi.etsy.com/v2/listings/active.js"
+                        return "https://openapi.etsy.com/v2/listings/active.js?includes=Images:1"
                     },
         //             // "&callback=?" // <--- told jQuery to handle the request as JSONP
         // https://openapi.etsy.com/v2/listings/active.js?includes=Images:1&callback=?
+        // ?includes=Images:1"
+        // "https://img0.etsystatic.com/049/0/10517659/il_75x75.721879016_kbdm.jpg"
+        // "https://img0.etsystatic.com/049/0/10517659/il_170x135.721879016_kbdm.jpg"
+        // "https://img1.etsystatic.com/060/0/6994845/il_75x75.722208543_2hbv.jpg"
 
             },
             access_token: function() {
-                return "?api_key=" + this.api_key + "&callback=?"
+                return "&api_key=" + this.api_key + "&callback=?"
             },
+            // "?api_key=" + this.api_key + "&callback=?"
+            // "&api_key=" + this.api_key + "&callback=?"
             /**
              * getData
              * @arguments none.
@@ -94,6 +100,7 @@
 
             getListingData: function() {
                 return $.getJSON(this.URLs.listings() + this.access_token()).then(function(d, s, p) {
+                    console.log(d);
                     return d;
                 });
             },
@@ -134,16 +141,16 @@
                     this.loadTemplate("listing")
                 ).then(function(listing, html) {
                     // console.log(listing)
-                   var buildastring = " ";
+                   var output1 = " ";
 
                 //     console.log(html)
                     var compiledFunction = _.template(html)
                     listing.results.forEach(function(result){
-                       var y = compiledFunction(result);
-                       buildastring += y;
+                       var output2 = compiledFunction(result);
+                       output1 += output2;
                     })
 
-                    $('body').append(buildastring);
+                    $('.etsy-grid').append(output1);
 
 
                 // // listing.forEach()
