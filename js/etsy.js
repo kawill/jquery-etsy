@@ -1,156 +1,156 @@
 ;
 (function() {
 
-        function EtsyListing(api_key) {
-            this.api_key = api_key;
-            this.listings = [];
+    function EtsyListing(api_key) {
+        this.api_key = api_key;
+        this.listings = [];
 
-            var self = this;
-            var EtsyRouter = Backbone.Router.extend({
-                routes: {
-                    "listings": "drawListingInfo"
-                },
-                drawListingInfo: function() {
+        var self = this;
+        var EtsyRouter = Backbone.Router.extend({
+            routes: {
+                "listings": "drawListingInfo"
+            },
+            drawListingInfo: function() {
 
-                    self.drawListing()
-                },
-                initialize: function() {
-                    Backbone.history.start();
-                }
+                self.drawListing()
+            },
+            initialize: function() {
+                Backbone.history.start();
+            }
+        })
+        var router = new EtsyRouter();
+
+        // this.listenToEvents();
+        this.drawListing();
+    }
+
+    EtsyListing.prototype = {
+        URLs: {
+            listings: function() {
+                return "https://openapi.etsy.com/v2/listings/active.js?includes=Images:1"
+            },
+            //             // "&callback=?" // <--- told jQuery to handle the request as JSONP
+            // https://openapi.etsy.com/v2/listings/active.js?includes=Images:1&callback=?
+            // ?includes=Images:1"
+            // "https://img0.etsystatic.com/049/0/10517659/il_75x75.721879016_kbdm.jpg"
+            // "https://img0.etsystatic.com/049/0/10517659/il_170x135.721879016_kbdm.jpg"
+            // "https://img1.etsystatic.com/060/0/6994845/il_75x75.722208543_2hbv.jpg"
+
+        },
+        access_token: function() {
+            return "&api_key=" + this.api_key + "&callback=?"
+        },
+        // "?api_key=" + this.api_key + "&callback=?"
+        // "&api_key=" + this.api_key + "&callback=?"
+        /**
+         * getData
+         * @arguments none.
+         * @return promise
+         */
+        // getData: function() {
+        //     var x = $.Deferred(),
+        //         self = this;
+
+        //     if (this.members.length > 0) {
+        //         x.resolve(this.members);
+        //     } else {
+        //         var p = $.get(this.URLs.members + this.access_token());
+        //         p.then(function(data) {
+        //             x.resolve(data);
+        //             self.members = data;
+        //         })
+        //     }
+
+        //     return x;
+        // },
+
+        loadTemplate: function(template_name) {
+            // modify the event context, return only the data
+            return $.get("./templates/" + template_name + ".html").then(function(d, s, p) {
+                return d;
             })
-            var router = new EtsyRouter();
+        },
 
-            // this.listenToEvents();
-            // this.draw();
-        }
+        // listenToEvents: function() {
+        //     var right_side = $(".github-grid > *:nth-child(2)");
 
-        EtsyListing.prototype = {
-                URLs: {
-                    listings: function() {
-                        return "https://openapi.etsy.com/v2/listings/active.js?includes=Images:1"
-                    },
-        //             // "&callback=?" // <--- told jQuery to handle the request as JSONP
-        // https://openapi.etsy.com/v2/listings/active.js?includes=Images:1&callback=?
-        // ?includes=Images:1"
-        // "https://img0.etsystatic.com/049/0/10517659/il_75x75.721879016_kbdm.jpg"
-        // "https://img0.etsystatic.com/049/0/10517659/il_170x135.721879016_kbdm.jpg"
-        // "https://img1.etsystatic.com/060/0/6994845/il_75x75.722208543_2hbv.jpg"
+        //     right_side.on("click", "a", function(event) {
+        //         event.preventDefault();
+        //         window.open(this.href, '_blank');
+        //     })
 
-            },
-            access_token: function() {
-                return "&api_key=" + this.api_key + "&callback=?"
-            },
-            // "?api_key=" + this.api_key + "&callback=?"
-            // "&api_key=" + this.api_key + "&callback=?"
-            /**
-             * getData
-             * @arguments none.
-             * @return promise
-             */
-            // getData: function() {
-            //     var x = $.Deferred(),
-            //         self = this;
+        //     right_side.on("click", "input", function(event) {
+        //         event.preventDefault();
+        //         this.select();
+        //     })
+        // },
 
-            //     if (this.members.length > 0) {
-            //         x.resolve(this.members);
-            //     } else {
-            //         var p = $.get(this.URLs.members + this.access_token());
-            //         p.then(function(data) {
-            //             x.resolve(data);
-            //             self.members = data;
-            //         })
-            //     }
+        // draw: function() {
+        //     $.when(
+        //         this.getData(),
+        //         this.loadTemplate("menu-item")
+        //     ).then(function(members, html) {
+        //         // typeof html is "string"
+        //         var left_column = document.querySelector(".github-grid > *:nth-child(1)");
+        //         left_column.innerHTML = _.template(html, {
+        //             members: members
+        //         });
+        //     })
+        // },
 
-            //     return x;
-            // },
+        getListingData: function() {
+            return $.getJSON(this.URLs.listings() + this.access_token()).then(function(d, s, p) {
+                // console.log(d);
+                return d;
+            });
+        },
 
-            loadTemplate: function(template_name) {
-                // modify the event context, return only the data
-                return $.get("./templates/" + template_name + ".html").then(function(d, s, p) {
-                    return d;
-                })
-            },
+        // getRepoList: function(username) {
+        //     return $.get(this.URLs.repolist(username) + this.access_token()).then(function(d, s, p) {
+        //         return d;
+        //     });
+        // },
 
-            // listenToEvents: function() {
-            //     var right_side = $(".github-grid > *:nth-child(2)");
+        // getSortedRepoList: function(username) {
+        //     return this.getRepoList(username).then(function(d, s, p) {
 
-            //     right_side.on("click", "a", function(event) {
-            //         event.preventDefault();
-            //         window.open(this.href, '_blank');
-            //     })
+        //         d.sort(function(a, b) {
 
-            //     right_side.on("click", "input", function(event) {
-            //         event.preventDefault();
-            //         this.select();
-            //     })
-            // },
+        //             var collection = [a, b];
+        //             collection.forEach(function(v) {
+        //                 if (!(v.updated_at instanceof Date)) {
+        //                     v.updated_at = new Date(v.updated_at);
+        //                 }
+        //             })
 
-            // draw: function() {
-            //     $.when(
-            //         this.getData(),
-            //         this.loadTemplate("menu-item")
-            //     ).then(function(members, html) {
-            //         // typeof html is "string"
-            //         var left_column = document.querySelector(".github-grid > *:nth-child(1)");
-            //         left_column.innerHTML = _.template(html, {
-            //             members: members
-            //         });
-            //     })
-            // },
+        //             return a.updated_at > b.updated_at ? -1 : 1;
+        //         })
+        //         return d;
 
-            getListingData: function() {
-                return $.getJSON(this.URLs.listings() + this.access_token()).then(function(d, s, p) {
-                    console.log(d);
-                    return d;
-                });
-            },
+        //     })
+        // },
 
-            // getRepoList: function(username) {
-            //     return $.get(this.URLs.repolist(username) + this.access_token()).then(function(d, s, p) {
-            //         return d;
-            //     });
-            // },
-
-            // getSortedRepoList: function(username) {
-            //     return this.getRepoList(username).then(function(d, s, p) {
-
-            //         d.sort(function(a, b) {
-
-            //             var collection = [a, b];
-            //             collection.forEach(function(v) {
-            //                 if (!(v.updated_at instanceof Date)) {
-            //                     v.updated_at = new Date(v.updated_at);
-            //                 }
-            //             })
-
-            //             return a.updated_at > b.updated_at ? -1 : 1;
-            //         })
-            //         return d;
-
-            //     })
-            // },
-
-            drawListing: function() {
-                // load data
-                // load template
-                // draw to screen
+        drawListing: function() {
+            // load data
+            // load template
+            // draw to screen
 
 
-                $.when(
-                    this.getListingData(),
-                    this.loadTemplate("listing")
-                ).then(function(listing, html) {
-                    // console.log(listing)
-                   var output1 = " ";
+            $.when(
+                this.getListingData(),
+                this.loadTemplate("listing")
+            ).then(function(listing, html) {
+                // console.log(listing)
+                var output1 = " ";
 
                 //     console.log(html)
-                    var compiledFunction = _.template(html)
-                    listing.results.forEach(function(result){
-                       var output2 = compiledFunction(result);
-                       output1 += output2;
-                    })
+                var compiledFunction = _.template(html)
+                listing.results.forEach(function(result) {
+                    var output2 = compiledFunction(result);
+                    output1 += output2;
+                })
 
-                    $('.etsy-grid').append(output1);
+                $('.etsy-grid').append(output1);
 
 
                 // // listing.forEach()
@@ -159,8 +159,8 @@
                 //     //     listing: listing,
 
                 //     // });
-                })
-            }
+            })
+        }
     }
 
     // var htmlFromFile = '<%=  hello %>'//typeof string
