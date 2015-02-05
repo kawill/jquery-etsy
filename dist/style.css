@@ -827,7 +827,7 @@ abbr[title]:hover {
     font-size: medium;
     text-align: left;
     display: inline-block;
-    width: 33%;
+    width: 100%;
     vertical-align: top; }
   .grid:after {
     display: inline-block;
