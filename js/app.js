@@ -26,6 +26,18 @@ function app() {
 
         var api_key = "n9sz8fruol3xyetzq7epocvd";
         window.ey = new EtsyListing(api_key);
+        $("body").on("click", ".left", this.left.bind(this));
+        $("body").on("click", ".right", this.right.bind(this));
+
+        // or
+
+        // var self = this;
+        // $("body").on("click", ".left", function(){
+        //     self.left()
+        // });
+        // $("body").on("click", ".right", function(){
+        //     self.right()
+        // });
         $("form").on("submit", function(event) {      
             event.preventDefault();      
             window.location.hash = '#/search/' + this.querySelector('input').value;    
