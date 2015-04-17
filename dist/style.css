@@ -857,6 +857,9 @@ body {
   margin: 0 auto;
   margin-top: 2rem; }
 
+/**
+ * SPECIFIC
+ */
 span {
   display: inline-block; }
 
@@ -895,14 +898,15 @@ form {
           border-radius: 10px;
   margin-bottom: 1.5rem;
   padding: 1.5rem 1rem; }
-  .etsy-grid > * h6 {
-    text-align: center; }
   .etsy-grid > * img {
-    padding: 0px 0px 0px 15px; }
+    padding: 0 0 1rem 0;
+    width: 100%; }
   .etsy-grid > * p {
-    padding: 0px 0px 0px 61px; }
+    text-align: center;
+    padding-top: 1rem;
+    margin-bottom: 0; }
 
-button {
+.search-button {
   -webkit-border-radius: 0 10px 10px 0;
           border-radius: 0 10px 10px 0;
   margin-left: -60px;
@@ -926,6 +930,8 @@ button {
   .detail .back {
     text-align: right;
     margin-top: -1.5rem; }
+  .detail h5 {
+    text-align: center; }
   .detail h6 {
     text-align: center; }
   .detail img {
@@ -935,4 +941,18 @@ button {
     width: 100%; }
   .detail .price {
     text-align: center; }
+  .detail .purchase-button {
+    -webkit-border-radius: 10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
+    height: 2rem;
+    background-color: #51B2AD;
+    border-color: #51B2AD;
+    color: white;
+    margin-left: 8.5rem; }
+  .detail .back-button {
+    -webkit-border-radius: 4px 4px 4px 4px;
+            border-radius: 4px 4px 4px 4px;
+    background-color: #ececec;
+    border-color: #ececec;
+    color: black; }
 

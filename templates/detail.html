@@ -1,20 +1,24 @@
 
 <div class="detail">
-<p class="back"><a href="">Back</a></p>
+<p class="back"><a href=""><button class="back-button">Back</button></a></p>
 
     <% results.forEach(function(value, key){ %>
 
-        <a href="#listing/<%=value.listing_id%>">
-            <h6><%= value.title %></h6>
-
-            <hr>
 
             <% if(value.Images instanceof Array && value.Images.length){ %>
                 <img src="<%= value.Images[0].url_170x135 %>">
             <% } %>
 
+            <hr>
+
+            <h5><%= value.title %></h5>
+            <h6><%= value.description %></h6>
             <p class="price"><%= value.price %> <%= value.currency_code %></p>
-        </a>
+
+            <a href="<%=value.url%>">
+            <button class="purchase-button"> Purchase on Etsy </button>
+            </a>
+
 
     <% }) %>
 

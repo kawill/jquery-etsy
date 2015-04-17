@@ -2,13 +2,12 @@
     <% results.forEach(function(value, key){ %>
 
         <a href="#listing/<%=value.listing_id%>">
-            <h6><%= value.title %></h6>
-
-            <hr>
 
             <% if(value.Images instanceof Array && value.Images.length){ %>
                 <img src="<%= value.Images[0].url_170x135 %>">
             <% } %>
+
+            <hr>
 
             <p><%= value.price %> <%= value.currency_code %></p>
         </a>
