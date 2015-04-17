@@ -908,7 +908,10 @@ button {
   margin-left: -60px;
   height: 2rem;
   padding-top: 1.5px;
-  padding-bottom: 2.5px; }
+  padding-bottom: 2.5px;
+  background-color: #51B2AD;
+  border-color: #51B2AD;
+  color: white; }
 
 .detail {
   margin: 45px auto 45px;
