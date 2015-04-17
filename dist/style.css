@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(../bower_components/font-awesome/css/font-awesome.min.css);
 /* ==========================================================================
    Normalize.scss settings
    ========================================================================== */
@@ -851,19 +852,84 @@ img {
 
 body {
   -webkit-transition: opacity .25s ease;
-          transition: opacity .25s ease; }
+          transition: opacity .25s ease;
+  max-width: 1024px;
+  margin: 0 auto;
+  margin-top: 2rem; }
 
 span {
   display: inline-block; }
+
+.top {
+  padding-bottom: 2rem; }
+
+form {
+  display: inline; }
+  form h3 {
+    margin-bottom: 0;
+    font-size: 4rem; }
+  form .title {
+    display: inline-block;
+    padding-top: 0rem;
+    margin-left: 1.5rem; }
+  form .search-bar {
+    position: relative;
+    margin-right: 4.5em;
+    display: inline-block;
+    margin-left: 1rem;
+    margin-right: 0;
+    width: 40%;
+    margin-left: 6.5rem; }
+    form .search-bar > input {
+      padding: .25em .5em;
+      width: 100%;
+      -webkit-border-radius: 10px 0 0 10px;
+              border-radius: 10px 0 0 10px;
+      height: 2rem; }
 
 .etsy-grid > * {
   border: black;
   -webkit-box-shadow: 0 0 10px black;
           box-shadow: 0 0 10px black;
   -webkit-border-radius: 10px;
-          border-radius: 10px; }
+          border-radius: 10px;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem 1rem; }
+  .etsy-grid > * h6 {
+    text-align: center; }
+  .etsy-grid > * img {
+    padding: 0px 0px 0px 15px; }
+  .etsy-grid > * p {
+    padding: 0px 0px 0px 61px; }
 
 button {
+  -webkit-border-radius: 0 10px 10px 0;
+          border-radius: 0 10px 10px 0;
+  margin-left: -60px;
+  height: 2rem;
+  padding-top: 1.5px;
+  padding-bottom: 2.5px; }
+
+.detail {
+  margin: 45px auto 45px;
+  padding: 50px;
+  border: black;
+  border: 10px;
+  width: 60ch;
+  -webkit-box-shadow: 0 0 10px black;
+          box-shadow: 0 0 10px black;
   -webkit-border-radius: 10px;
           border-radius: 10px; }
+  .detail .back {
+    text-align: right;
+    margin-top: -1.5rem; }
+  .detail h6 {
+    text-align: center; }
+  .detail img {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    width: 100%; }
+  .detail .price {
+    text-align: center; }
 

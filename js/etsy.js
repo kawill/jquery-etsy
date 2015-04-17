@@ -16,7 +16,13 @@
                 self.drawListing()
             },
             drawDetails: function(id){
+                // document.querySelector(".etsy-grid").style.opacity = ".5"; //cannot read style of null
+                // $('.etsy-grid').css("opacity", ".5");
+                // console.log(arguments);
+                // self.drawDetailsInfo(id);
                 self.drawDetailsInfo(id);
+                // $('.etsy-grid').css("opacity", ".5");
+                // document.querySelector(".etsy-grid").style.opacity = ".5";
             },
             drawSearch: function(keyword) {
                 self.drawSearchInfo(keyword);
@@ -61,11 +67,14 @@
 
 
         getListingData: function() {
-            return $.getJSON(this.URLs.listings() + this.access_token()).then(function(d, s, p) {return d;});
+            return $.getJSON(this.URLs.listings() + this.access_token()).then(function(d, s, p) {console.log(d);return d;});
+
         },
 
         getDetailData: function(id){
+            // console.log(arguments);
             return $.getJSON(this.URLs.detail(id) + this.access_token()).then(function(d, s, p) {return d;});
+            // return $.getJSON(this.URLs.listings() + this.access_token()).then(function(d, s, p) {console.log(d);return d;});
         },
 
         getSearchData: function(keyword){
@@ -106,10 +115,13 @@
         drawDetailsInfo: function(id){
             $.when(
                 this.getDetailData(id),
+                // console.log(arguments),
                 this.loadTemplate("detail") //"listing" = name of template file
             ).then(function(details, html) { //receive data & html from template
                 var compiledFunction = _.template(html);
                 $('.container').html( compiledFunction (details) );
+                // $('.etsy-grid').css("opacity", ".5");
+                // document.querySelector('.etsy-grid').style.opacity = '.5';
             })
         },
 
@@ -125,7 +137,7 @@
 
 
             })
-        }
+        },
     }
 
     // var htmlFromFile = '<%=  hello %>'//typeof string

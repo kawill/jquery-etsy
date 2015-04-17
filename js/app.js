@@ -26,8 +26,8 @@ function app() {
 
         var api_key = "n9sz8fruol3xyetzq7epocvd";
         window.ey = new EtsyListing(api_key);
-        $("body").on("click", ".left", this.left.bind(this));
-        $("body").on("click", ".right", this.right.bind(this));
+        // $("body").on("click", ".left", this.left.bind(this));
+        // $("body").on("click", ".right", this.right.bind(this));
 
         // or
 
